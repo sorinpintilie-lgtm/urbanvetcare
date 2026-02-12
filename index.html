@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="ro" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Vet Care Constanța</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&display=swap&subset=latin,latin-ext" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        urban: {
+                            teal: '#39B5C1',
+                            magenta: '#B3308B',
+                            purple: '#8A4FFF',
+                            light: '#F0F9FA', 
+                            accent: '#FDEDF6', 
+                        }
+                    },
+                    fontFamily: {
+                        // Folosim Nunito peste tot pentru consistență și diacritice sigure
+                        heading: ['Nunito', 'sans-serif'],
+                        body: ['Nunito', 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2.5rem',
+                        '5xl': '3.5rem',
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 40px -10px rgba(57, 181, 193, 0.15)',
+                        'glow': '0 0 20px rgba(57, 181, 193, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --promo-height: 40px;
+        }
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FFFFFF;
+            padding-top: calc(var(--promo-height) + env(safe-area-inset-top));
+        }
+        
+        .bg-gradient-urban {
+            background: linear-gradient(135deg, #39B5C1, #B3308B);
+        }
+        
+        .text-gradient {
+            background: linear-gradient(to right, #39B5C1, #B3308B);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: inline-block;
+        }
+        
+        .btn-bounce:hover {
+            transform: translateY(-3px);
+        }
+
+        .blob-mask {
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+        }
+        
+        /* Mobile Input Fix */
+        input, select, textarea {
+            font-size: 16px !important;
+        }
+
+        /* Safe area padding for mobile bottom bar */
+        .pb-safe-bar {
+            padding-bottom: 90px;
+        }
+
+        /* Hero background responsive */
+        .hero-section {
+            background-image: url('hero_mobile.jpg');
+            background-position: right center;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-section {
+                background-image: url('hero.jpg');
+                background-position: center;
+            }
+        }
+
+        /* Promo Bar */
+        .promo-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--promo-height);
+            background: #F2B94B;
+            color: #1F2933;
+            font-weight: 400;
+            z-index: 9999;
+            padding-top: env(safe-area-inset-top);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            font-size: 14px;
+            line-height: 1.2;
+        }
+
+        .promo-desktop {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: min(1240px, 92vw);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .promo-desktop span a {
+            color: #2F80ED;
+            text-decoration: none;
+        }
+
+        .promo-desktop span a:hover,
+        .promo-desktop span a:focus {
+            text-decoration: underline;
+        }
+
+        .btn-promo {
+            background: #2F80ED;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 14px;
+            transition: opacity 0.2s;
+            white-space: nowrap;
+        }
+
+        .btn-promo:hover,
+        .btn-promo:focus {
+            opacity: 0.85;
+        }
+
+        .promo-mobile {
+            display: none;
+            height: 100%;
+            padding: 0 12px;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .promo-mobile .promo-left,
+        .promo-mobile .promo-center,
+        .promo-mobile .promo-right {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #1F2933;
+        }
+
+        .promo-mobile .promo-left {
+            flex-shrink: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            min-width: 0;
+        }
+
+        .promo-mobile .promo-center {
+            flex-shrink: 0;
+            white-space: nowrap;
+            padding: 0 8px;
+        }
+
+        .promo-mobile .promo-right {
+            flex-shrink: 0;
+        }
+
+        .promo-mobile .promo-right a {
+            color: #2F80ED;
+            text-decoration: none;
+        }
+
+        .promo-mobile .promo-right a:hover,
+        .promo-mobile .promo-right a:focus {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .promo-desktop {
+                display: none;
+            }
+            .promo-mobile {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-700 overflow-x-hidden flex flex-col min-h-screen pb-safe-bar md:pb-0">
+
+    <!-- Promo Bar -->
+    <div class="promo-bar">
+        <div class="promo-desktop">
+            <span>Concept demo • Conținut orientativ • Dezvoltat de sky.ro • <a href="mailto:dan.trifan@sky.ro">dan.trifan@sky.ro</a> • <a href="tel:+40720088880">+4 0720 088 880</a></span>
+            <a class="btn-promo" href="https://wa.me/+40720088880">WhatsApp</a>
+        </div>
+        <div class="promo-mobile">
+            <div class="promo-left">Concept demo</div>
+            <div class="promo-center">Dezvoltat de sky.ro</div>
+            <div class="promo-right"><a href="tel:+40720088880">+4 0720 088 880</a></div>
+        </div>
+    </div>
+
+    <div class="bg-slate-50 border-b border-slate-100 text-slate-600 text-xs py-2 hidden md:block">
+        <div class="container mx-auto px-4 flex justify-between items-center font-bold">
+            <div class="flex space-x-6">
+                <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-urban-teal"></i> Bd. Al. Lăpușneanu 181A</span>
+                <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-urban-magenta"></i> L–V 09-17 • S 10-14</span>
+            </div>
+            <a href="tel:0727426426" class="font-extrabold text-urban-magenta hover:text-urban-teal transition flex items-center gap-1">
+                <i data-lucide="phone" class="w-3 h-3"></i> 0727 426 426
+            </a>
+        </div>
+    </div>
+
+    <header class="bg-white/95 backdrop-blur-md sticky z-40 border-b border-slate-100/50" style="top: calc(var(--promo-height) + env(safe-area-inset-top));">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <a href="#" class="flex items-center gap-2 group">
+                <img src="logo.png" alt="Urban Vet Care Logo" class="h-14 md:h-16 w-auto object-contain">
+            </a>
+
+            <nav class="hidden md:flex gap-8 text-base font-bold text-slate-600">
+                <a href="#" class="hover:text-urban-teal transition">Acasă</a>
+                <a href="#servicii" class="hover:text-urban-teal transition">Servicii</a>
+                <a href="#preturi" class="hover:text-urban-teal transition">Tarife</a>
+                <a href="#despre" class="hover:text-urban-teal transition">Despre noi</a>
+                <a href="#contact" class="hover:text-urban-teal transition">Contact</a>
+            </nav>
+
+            <div class="hidden md:flex items-center gap-3">
+                <a href="https://wa.me/40727426426" class="text-green-600 hover:text-green-700 font-bold text-sm flex items-center gap-1.5 bg-green-50 px-4 py-2 rounded-full hover:bg-green-100 transition">
+                    <i data-lucide="message-circle" class="w-4 h-4"></i> WhatsApp
+                </a>
+                <a href="tel:0727426426" class="bg-gradient-urban text-white px-6 py-2 rounded-full font-bold shadow-md hover:shadow-glow transition transform btn-bounce text-sm">
+                    Programează-te
+                </a>
+            </div>
+
+            <button class="md:hidden text-slate-800 bg-slate-50 p-2 rounded-full border border-slate-100" onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </div>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 p-4 absolute w-full shadow-lg rounded-b-3xl z-50">
+            <div class="flex flex-col gap-4 text-center font-bold text-lg">
+                <a href="#" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Acasă</a>
+                <a href="#servicii" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Servicii</a>
+                <a href="#preturi" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Tarife</a>
+                <a href="#contact" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero-section relative pt-8 pb-32 md:pt-20 md:pb-48 overflow-hidden bg-cover">
+        
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
+            <div class="text-center md:text-left">
+                <h1 class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl leading-tight mb-6 text-slate-900">
+                    Avem grijă de sănătatea <span class="text-gradient">animăluțului tău</span>
+                </h1>
+
+                <p class="hidden md:block text-lg md:text-xl text-slate-600 mb-8 leading-relaxed max-w-lg mx-auto md:mx-0 font-bold">
+                    Consultații, analize și chirurgie în Constanța. Programare rapidă, comunicare clară și zero complicații.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-6 md:mt-0">
+                    <a href="tel:0727426426" class="bg-gradient-urban text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-glow transition transform btn-bounce flex items-center justify-center gap-3 text-lg">
+                        <i data-lucide="phone-call" class="w-5 h-5"></i> Programează-te
+                    </a>
+                    <a href="https://wa.me/40727426426" class="bg-white border-2 border-urban-teal text-urban-teal px-8 py-4 rounded-full font-bold hover:bg-urban-teal/5 transition flex items-center justify-center gap-3 text-lg btn-bounce">
+                        <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicii" class="py-16 md:py-20 bg-white relative">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="bg-urban-light text-urban-teal font-extrabold px-4 py-2 rounded-full text-xs uppercase tracking-wider inline-block mb-4">Ce facem pentru voi</span>
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-slate-900">Servicii veterinare <span class="text-urban-magenta">complete</span></h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="bg-white p-6 rounded-3xl border-2 border-slate-50 shadow-sm hover:shadow-soft hover:border-urban-teal transition group">
+                    <div class="w-14 h-14 bg-urban-light rounded-2xl flex items-center justify-center mb-5 group-hover:bg-urban-teal transition group-hover:rotate-6">
+                        <i data-lucide="stethoscope" class="w-7 h-7 text-urban-teal group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-slate-800">Consultații</h3>
+                    <p class="text-slate-600 text-sm font-semibold leading-relaxed">Diagnostic clar și plan de tratament explicat pe înțelesul tău, ca să pleci liniștit.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-2 border-slate-50 shadow-sm hover:shadow-soft hover:border-urban-magenta transition group">
+                    <div class="w-14 h-14 bg-urban-accent rounded-2xl flex items-center justify-center mb-5 group-hover:bg-urban-magenta transition group-hover:-rotate-6">
+                        <i data-lucide="microscope" class="w-7 h-7 text-urban-magenta group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-slate-800">Analize</h3>
+                    <p class="text-slate-600 text-sm font-semibold leading-relaxed">Rezultate rapide pentru decizii corecte și tratament început la timp.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-2 border-slate-50 shadow-sm hover:shadow-soft hover:border-urban-purple transition group">
+                    <div class="w-14 h-14 bg-purple-50 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-urban-purple transition group-hover:rotate-6">
+                        <i data-lucide="activity" class="w-7 h-7 text-urban-purple group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-slate-800">Chirurgie</h3>
+                    <p class="text-slate-600 text-sm font-semibold leading-relaxed">Intervenții sigure, cu atenție la confort și monitorizare pe tot parcursul.</p>
+                </div>
+                <div class="bg-white p-6 rounded-3xl border-2 border-slate-50 shadow-sm hover:shadow-soft hover:border-emerald-500 transition group">
+                    <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center mb-5 group-hover:bg-emerald-500 transition group-hover:-rotate-6">
+                        <i data-lucide="pill" class="w-7 h-7 text-emerald-500 group-hover:text-white transition"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl mb-3 text-slate-800">Farmacie</h3>
+                    <p class="text-slate-600 text-sm font-semibold leading-relaxed">Ridici tratamentul imediat, direct din clinică, fără drumuri în plus.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="despre" class="py-20 bg-urban-accent relative">
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
+            <div class="order-2 md:order-1 relative">
+                <div class="absolute inset-0 bg-gradient-to-tr from-urban-magenta to-urban-purple opacity-20 blob-mask transform -rotate-3 scale-105 blur-lg"></div>
+                <div class="p-3 bg-white blob-mask shadow-xl">
+                    <img src="about.jpg" alt="Echipa veterinara" class="blob-mask w-full h-auto">
+                </div>
+            </div>
+            <div class="order-1 md:order-2">
+                <h2 class="font-heading font-extrabold text-3xl md:text-5xl text-slate-900 mb-8">Grijă reală, <span class="text-urban-magenta">fără grabă.</span></h2>
+                <div class="space-y-8 text-lg font-semibold text-slate-700">
+                    <div class="flex gap-4 items-start">
+                        <div class="bg-white p-3 rounded-full shadow-sm mt-1">
+                            <i data-lucide="heart-handshake" class="w-6 h-6 text-urban-teal"></i>
+                        </div>
+                        <div>
+                            <span class="font-extrabold text-slate-900 text-xl block mb-2 font-heading">Echipa</span>
+                            <p class="text-slate-600 text-base">Suntem o echipă care pune accent pe grijă reală și explicații clare. De la primul consult, primești recomandări practice și o abordare calmă.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-4 items-start">
+                         <div class="bg-white p-3 rounded-full shadow-sm mt-1">
+                            <i data-lucide="smile" class="w-6 h-6 text-urban-magenta"></i>
+                        </div>
+                        <div>
+                            <span class="font-extrabold text-slate-900 text-xl block mb-2 font-heading">Atmosfera</span>
+                            <p class="text-slate-600 text-base">Ne place medicina făcută fără stres inutil: comunicare directă, pași simpli, focus pe prevenție și soluții rapide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="preturi" class="py-20 bg-white relative">
+        <div class="container mx-auto px-4 max-w-3xl">
+            <div class="text-center mb-12">
+                <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-slate-900">Tarife <span class="text-urban-teal">orientative</span></h2>
+                <p class="text-slate-500 mt-3 text-lg font-semibold">Prețurile diferă în funcție de greutate și complexitate.</p>
+            </div>
+
+            <div class="bg-white rounded-4xl p-6 md:p-10 shadow-soft border-4 border-urban-light relative overflow-hidden">
+                <div class="space-y-4 relative z-10">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-urban-light p-4 rounded-2xl hover:bg-urban-teal/10 transition gap-2">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="stethoscope" class="w-5 h-5 text-urban-teal"></i>
+                            <span class="font-bold text-slate-700">Consultație generală</span>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-urban-teal self-end sm:self-auto">de la 150 LEI</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white border border-slate-100 p-4 rounded-2xl hover:border-urban-magenta transition gap-2">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="syringe" class="w-5 h-5 text-urban-magenta"></i>
+                            <span class="font-bold text-slate-700">Vaccinare anuală</span>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-urban-magenta self-end sm:self-auto">de la 100 LEI</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-urban-light p-4 rounded-2xl hover:bg-urban-teal/10 transition gap-2">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="shield-plus" class="w-5 h-5 text-urban-purple"></i>
+                            <span class="font-bold text-slate-700">Deparazitare</span>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-urban-purple self-end sm:self-auto">de la 50 LEI</span>
+                    </div>
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center bg-white border border-slate-100 p-4 rounded-2xl hover:border-urban-teal transition gap-2">
+                        <div class="flex items-center gap-3">
+                            <i data-lucide="scissors" class="w-5 h-5 text-urban-teal"></i>
+                            <span class="font-bold text-slate-700">Sterilizare</span>
+                        </div>
+                        <span class="font-heading font-extrabold text-xl text-urban-teal self-end sm:self-auto">de la 350 LEI</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-urban-light relative">
+        <div class="container mx-auto px-4 max-w-3xl pt-12">
+            <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-center mb-10 text-slate-900">Întrebări frecvente</h2>
+            <div class="space-y-4">
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                     <h3 class="font-heading font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
+                        <i data-lucide="help-circle" class="w-5 h-5 text-urban-teal"></i> Am nevoie de programare pentru farmacie?
+                     </h3>
+                     <p class="text-slate-600 pl-7 text-sm md:text-base font-semibold">Nu întotdeauna. Pentru produse uzuale poți veni direct, dar pentru rețete / tratamente specifice e mai bine să ne suni înainte.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                     <h3 class="font-heading font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
+                        <i data-lucide="clock" class="w-5 h-5 text-urban-magenta"></i> Cât durează o consultație?
+                     </h3>
+                     <p class="text-slate-600 pl-7 text-sm md:text-base font-semibold">În medie 20–30 de minute. Dacă sunt necesare investigații suplimentare, poate dura mai mult.</p>
+                </div>
+                <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
+                     <h3 class="font-heading font-bold text-lg text-slate-800 mb-2 flex items-center gap-2">
+                        <i data-lucide="credit-card" class="w-5 h-5 text-urban-purple"></i> Pot plăti cu cardul?
+                     </h3>
+                     <p class="text-slate-600 pl-7 text-sm md:text-base font-semibold">Da, acceptăm card și numerar.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="pt-20 bg-white">
+        <div class="container mx-auto px-4 mb-12">
+            <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-center mb-12 text-slate-900">Contactează-ne</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+                
+                <div class="flex flex-col justify-center space-y-8 pl-4">
+                    <div class="mb-4">
+                        <h3 class="font-heading font-bold text-2xl text-slate-800 mb-2">Te așteptăm la clinică! 🐾</h3>
+                        <p class="text-slate-600 font-semibold">Scrie-ne pe WhatsApp sau sună și îți confirmăm rapid primul interval disponibil.</p>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start gap-4">
+                            <div class="bg-urban-light p-3 rounded-full"><i data-lucide="map-pin" class="w-6 h-6 text-urban-teal"></i></div>
+                            <div>
+                                <h4 class="font-heading font-bold text-lg text-slate-800">Adresă</h4>
+                                <p class="text-slate-600 font-semibold">Bd. Al. Lăpușneanu 181A, Bl. LP3<br>Constanța</p>
+                            </div>
+                        </div>
+                         <div class="flex items-start gap-4">
+                            <div class="bg-urban-accent p-3 rounded-full"><i data-lucide="phone" class="w-6 h-6 text-urban-magenta"></i></div>
+                            <div>
+                                <h4 class="font-heading font-bold text-lg text-slate-800">Telefon</h4>
+                                <a href="tel:0727426426" class="text-slate-600 font-bold hover:text-urban-teal text-lg">0727 426 426</a>
+                            </div>
+                        </div>
+                         <div class="flex items-start gap-4">
+                            <div class="bg-purple-50 p-3 rounded-full"><i data-lucide="clock" class="w-6 h-6 text-urban-purple"></i></div>
+                            <div>
+                                <h4 class="font-heading font-bold text-lg text-slate-800">Program</h4>
+                                <p class="text-slate-600 text-sm font-semibold">Luni - Vineri: 09:00 - 17:00</p>
+                                <p class="text-slate-600 text-sm font-semibold">Sâmbătă: 10:00 - 14:00</p>
+                                <p class="text-slate-600 text-sm text-urban-magenta font-extrabold">Duminică: Închis</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-slate-50 p-6 md:p-8 rounded-4xl shadow-soft border border-slate-100">
+                    <h3 class="font-heading font-bold text-2xl mb-6 text-slate-800">Scrie-ne rapid</h3>
+                    <form class="space-y-4" onsubmit="event.preventDefault(); window.location.href='tel:0727426426'">
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-2">Nume</label>
+                            <input type="text" class="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 focus:outline-none focus:border-urban-teal focus:ring-1 focus:ring-urban-teal transition" placeholder="Numele tău">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-2">Telefon</label>
+                            <input type="tel" class="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 focus:outline-none focus:border-urban-teal focus:ring-1 focus:ring-urban-teal transition" placeholder="07xx xxx xxx">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 mb-1 ml-2">Motiv</label>
+                            <select class="w-full bg-white border border-slate-200 rounded-2xl px-4 py-3 focus:outline-none focus:border-urban-teal focus:ring-1 focus:ring-urban-teal transition">
+                                <option>Programare Consult</option>
+                                <option>Vaccin / Deparazitare</option>
+                                <option>Urgență</option>
+                                <option>Altul</option>
+                            </select>
+                        </div>
+                        <button class="w-full bg-gradient-urban text-white font-bold py-4 rounded-2xl shadow-md hover:shadow-lg transition transform btn-bounce flex justify-center gap-2 mt-2">
+                            <i data-lucide="send" class="w-5 h-5"></i> Trimite Solicitarea
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full h-64 md:h-80 relative bg-slate-200">
+             <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2860.865420379469!2d28.6148!3d44.2081!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40bae56f00000001%3A0x1!2sBulevardul%20Alexandru%20L%C4%83pu%C8%99neanu%20181A%2C%20Constan%C8%9Ba!5e0!3m2!1sen!2sro!4v1600000000000!5m2!1sen!2sro" 
+                width="100%" 
+                height="100%" 
+                style="border:0;" 
+                allowfullscreen="" 
+                loading="lazy"
+                class="absolute inset-0 w-full h-full grayscale-[20%] hover:grayscale-0 transition duration-500">
+            </iframe>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 text-slate-300 py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
+                <div>
+                    <a href="#" class="inline-block mb-4">
+                        <img src="logo.png" alt="Urban Vet Care Logo" class="h-16 w-auto object-contain mx-auto md:mx-0">
+                    </a>
+                    <h3 class="font-heading font-bold text-2xl text-white mb-4">Urban Vet Care</h3>
+                    <p class="text-sm opacity-80 max-w-xs mx-auto md:mx-0 font-semibold">Clinică veterinară modernă în Constanța, dedicată sănătății și fericirii animalului tău de companie.</p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-white mb-4">Link-uri Rapide</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#servicii" class="hover:text-urban-teal transition">Servicii</a></li>
+                        <li><a href="#preturi" class="hover:text-urban-teal transition">Tarife</a></li>
+                        <li><a href="#contact" class="hover:text-urban-teal transition">Programare</a></li>
+                    </ul>
+                </div>
+                <div>
+                     <h4 class="font-bold text-white mb-4">Legal</h4>
+                     <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="hover:text-urban-teal transition">Termeni și condiții</a></li>
+                        <li><a href="#" class="hover:text-urban-teal transition">Politica de confidențialitate</a></li>
+                        <li><a href="https://anpc.ro/" target="_blank" class="hover:text-urban-teal transition">ANPC</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 text-center">
+                <p class="text-xs opacity-50 mb-3">© 2026 Urban Vet Care Constanța. Toate drepturile rezervate.</p>
+                <a href="https://sky.ro" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 text-xs opacity-60 hover:opacity-80 transition">
+                    <span>Crafted in the clouds by</span>
+                    <img src="skyro.png" alt="Sky.ro" class="h-5 w-auto">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="fixed bottom-0 left-0 w-full bg-white border-t border-slate-200 z-50 flex justify-around items-center p-2 shadow-[0_-5px_15px_rgba(0,0,0,0.1)] md:hidden">
+        
+        <a href="tel:0727426426" class="flex flex-col items-center justify-center text-slate-600 hover:text-urban-magenta w-16 group">
+            <i data-lucide="phone" class="w-6 h-6 mb-1 group-hover:scale-110 transition"></i>
+            <span class="text-[10px] font-extrabold uppercase tracking-wide">Sună</span>
+        </a>
+
+        <a href="https://wa.me/40720088880" class="flex flex-col items-center justify-center -mt-8">
+            <div class="bg-gradient-to-r from-green-500 to-emerald-500 p-3.5 rounded-full border-4 border-white shadow-lg btn-bounce">
+                <i data-lucide="message-circle" class="w-7 h-7 text-white fill-current"></i>
+            </div>
+            <span class="text-[10px] font-extrabold text-green-600 mt-1 uppercase tracking-wide">WhatsApp</span>
+        </a>
+
+        <a href="#contact" class="flex flex-col items-center justify-center text-slate-600 hover:text-urban-teal w-16 group">
+            <i data-lucide="map-pin" class="w-6 h-6 mb-1 group-hover:scale-110 transition"></i>
+            <span class="text-[10px] font-extrabold uppercase tracking-wide">Locație</span>
+        </a>
+    </div>
+
+    <!-- WhatsApp Floating Button (Desktop Only) -->
+    <a 
+        href="https://wa.me/40720088880" 
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Chat on WhatsApp"
+        class="hidden md:flex fixed bottom-6 right-6 z-50 items-center justify-center w-14 h-14 bg-[#25D366] text-white rounded-full shadow-2xl hover:bg-[#20bd5a] hover:scale-110 transition-all duration-300"
+    >
+        <svg viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+    </a>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
