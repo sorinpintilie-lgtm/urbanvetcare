@@ -43,8 +43,18 @@
         }
     </script>
     <style>
+        * { box-sizing: border-box; }
+        
         :root {
             --promo-height: 40px;
+            --page-px: clamp(16px, 4vw, 40px);
+            --container: 1200px;
+        }
+        
+        .container {
+            width: min(var(--container), 100%);
+            margin-inline: auto;
+            padding-inline: var(--page-px);
         }
         
         body {
@@ -225,7 +235,7 @@
     </div>
 
     <div class="bg-slate-50 border-b border-slate-100 text-slate-600 text-xs py-2 hidden md:block">
-        <div class="container mx-auto px-4 flex justify-between items-center font-bold">
+        <div class="container flex justify-between items-center font-bold">
             <div class="flex space-x-6">
                 <span class="flex items-center gap-1.5"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-urban-teal"></i> Bd. Al. Lăpușneanu 181A</span>
                 <span class="flex items-center gap-1.5"><i data-lucide="clock" class="w-3.5 h-3.5 text-urban-magenta"></i> L–V 09-17 • S 10-14</span>
@@ -237,7 +247,7 @@
     </div>
 
     <header class="bg-white/95 backdrop-blur-md sticky z-40 border-b border-slate-100/50" style="top: calc(var(--promo-height) + env(safe-area-inset-top));">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="container py-3 flex justify-between items-center">
             <a href="#" class="flex items-center gap-2 group">
                 <img src="logo.png" alt="Urban Vet Care Logo" class="h-14 md:h-16 w-auto object-contain">
             </a>
@@ -265,7 +275,7 @@
         </div>
 
         <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 p-4 absolute w-full shadow-lg rounded-b-3xl z-50">
-            <div class="flex flex-col gap-4 text-center font-bold text-lg">
+            <div class="container flex flex-col gap-4 text-center font-bold text-lg">
                 <a href="#" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Acasă</a>
                 <a href="#servicii" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Servicii</a>
                 <a href="#preturi" class="block py-2 text-slate-600" onclick="document.getElementById('mobile-menu').classList.add('hidden')">Tarife</a>
@@ -279,7 +289,7 @@
         <!-- Gradient overlay for mobile readability -->
         <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent md:hidden"></div>
         
-        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-12 items-end md:items-center relative z-10 pb-safe-bar">
+        <div class="container grid md:grid-cols-2 gap-8 md:gap-12 items-end md:items-center relative z-10 pb-safe-bar">
             <div class="text-center md:text-left">
                 <h1 class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl leading-tight mb-6 text-white md:text-slate-900">
                     Avem grijă de sănătatea <span class="text-gradient">animăluțului tău</span>
@@ -306,7 +316,7 @@
     </section>
 
     <section id="servicii" class="py-16 md:py-20 bg-white relative">
-        <div class="container mx-auto px-4">
+        <div class="container">
             <div class="text-center max-w-2xl mx-auto mb-12">
                 <span class="bg-urban-light text-urban-teal font-extrabold px-4 py-2 rounded-full text-xs uppercase tracking-wider inline-block mb-4">Ce facem pentru voi</span>
                 <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-slate-900">Servicii veterinare <span class="text-urban-magenta">complete</span></h2>
@@ -346,7 +356,7 @@
     </section>
 
     <section id="despre" class="py-20 bg-urban-accent relative">
-        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center relative z-10">
+        <div class="container grid md:grid-cols-2 gap-12 items-center relative z-10">
             <div class="order-2 md:order-1 relative">
                 <div class="absolute inset-0 bg-gradient-to-tr from-urban-magenta to-urban-purple opacity-20 blob-mask transform -rotate-3 scale-105 blur-lg"></div>
                 <div class="p-3 bg-white blob-mask shadow-xl">
@@ -380,7 +390,7 @@
     </section>
 
     <section id="preturi" class="py-20 bg-white relative">
-        <div class="container mx-auto px-4 max-w-3xl">
+        <div class="container max-w-3xl">
             <div class="text-center mb-12">
                 <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-slate-900">Tarife <span class="text-urban-teal">orientative</span></h2>
                 <p class="text-slate-500 mt-3 text-lg font-semibold">Prețurile diferă în funcție de greutate și complexitate.</p>
@@ -422,7 +432,7 @@
     </section>
 
     <section class="py-20 bg-urban-light relative">
-        <div class="container mx-auto px-4 max-w-3xl pt-12">
+        <div class="container max-w-3xl pt-12">
             <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-center mb-10 text-slate-900">Întrebări frecvente</h2>
             <div class="space-y-4">
                 <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-100">
@@ -448,7 +458,7 @@
     </section>
 
     <section id="contact" class="pt-20 bg-white">
-        <div class="container mx-auto px-4 mb-12">
+        <div class="container mb-12">
             <h2 class="font-heading font-extrabold text-3xl md:text-4xl text-center mb-12 text-slate-900">Contactează-ne</h2>
             
             <div class="grid lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
@@ -528,7 +538,7 @@
     </section>
 
     <footer class="bg-slate-900 text-slate-300 py-12">
-        <div class="container mx-auto px-4">
+        <div class="container">
             <div class="grid md:grid-cols-3 gap-8 mb-8 text-center md:text-left">
                 <div>
                     <a href="#" class="inline-block mb-4">
