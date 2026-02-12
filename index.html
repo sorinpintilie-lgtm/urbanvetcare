@@ -86,12 +86,17 @@
         .hero-section {
             background-image: url('hero_mobile.jpg');
             background-position: right center;
+            min-height: 100vh;
+            display: flex;
+            align-items: flex-end;
         }
         
         @media (min-width: 768px) {
             .hero-section {
                 background-image: url('hero.jpg');
                 background-position: center;
+                min-height: auto;
+                display: block;
             }
         }
 
@@ -269,11 +274,14 @@
         </div>
     </header>
 
-    <section class="hero-section relative pt-8 pb-32 md:pt-20 md:pb-48 overflow-hidden bg-cover">
+    <section class="hero-section relative pt-8 pb-8 md:pt-20 md:pb-48 overflow-hidden bg-cover">
         
-        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-12 items-center relative z-10">
+        <!-- Gradient overlay for mobile readability -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent md:hidden"></div>
+        
+        <div class="container mx-auto px-4 grid md:grid-cols-2 gap-8 md:gap-12 items-end md:items-center relative z-10 pb-safe-bar">
             <div class="text-center md:text-left">
-                <h1 class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl leading-tight mb-6 text-slate-900">
+                <h1 class="font-heading font-extrabold text-4xl md:text-6xl lg:text-7xl leading-tight mb-6 text-white md:text-slate-900">
                     Avem grijă de sănătatea <span class="text-gradient">animăluțului tău</span>
                 </h1>
 
@@ -281,11 +289,15 @@
                     Consultații, analize și chirurgie în Constanța. Programare rapidă, comunicare clară și zero complicații.
                 </p>
                 
+                <p class="md:hidden text-base text-white/90 mb-6 leading-relaxed font-semibold">
+                    Consultații, analize și chirurgie în Constanța.
+                </p>
+                
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start mt-6 md:mt-0">
                     <a href="tel:0727426426" class="bg-gradient-urban text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-glow transition transform btn-bounce flex items-center justify-center gap-3 text-lg">
                         <i data-lucide="phone-call" class="w-5 h-5"></i> Programează-te
                     </a>
-                    <a href="https://wa.me/40727426426" class="bg-white border-2 border-urban-teal text-urban-teal px-8 py-4 rounded-full font-bold hover:bg-urban-teal/5 transition flex items-center justify-center gap-3 text-lg btn-bounce">
+                    <a href="https://wa.me/40727426426" class="bg-white/95 border-2 border-white text-urban-teal px-8 py-4 rounded-full font-bold hover:bg-white transition flex items-center justify-center gap-3 text-lg btn-bounce md:bg-white md:border-urban-teal md:hover:bg-urban-teal/5">
                         <i data-lucide="message-circle" class="w-5 h-5"></i> WhatsApp
                     </a>
                 </div>
